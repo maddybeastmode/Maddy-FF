@@ -1,0 +1,1 @@
+"""Guests module"""
