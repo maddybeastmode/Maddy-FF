@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package freefire;
+
+// Platform authentication request
+message PlatformRegisterReq {
+  uint64 uid = 1;
+  bytes password = 2;
+  string region = 3;
+  string version = 4;
+  string device_id = 5;
+  int32 platform = 6;  // 1=Android, 2=iOS
+  string device_model = 7;
+  string os_version = 8;
+  string app_version = 9;
+  bytes signature = 10;
+}
+
+// Platform authentication response
+message PlatformRegisterResp {
+  int32 status = 1;
+  string message = 2;
+  bytes token_data = 3;
+  string server_url = 4;
+  string region = 5;
+  int64 expiry = 6;
+}
+
+// Like profile request
+message LikeProfileReq {
+  uint64 target_uid = 1;
+  string region = 2;
+  int64 timestamp = 3;
+  bytes nonce = 4;
+  uint64 source_uid = 5;
+  string client_version = 6;
+  bytes signature = 7;
+}
+
+// Like profile response
+message LikeProfileResp {
+  int32 status = 1;
+  string message = 2;
+  int32 new_like_count = 3;
+  int32 daily_like_count = 4;
+}
+
+// Guest account info
+message GuestAccountInfo {
+  uint64 uid = 1;
+  bytes password = 2;
+  string region = 3;
+  int64 created_at = 4;
+  string device_fingerprint = 5;
+}
+
+// Server time sync
+message ServerTimeReq {
+  int64 client_time = 1;
+  string region = 2;
+}
+
+message ServerTimeResp {
+  int64 server_time = 1;
+  int32 timezone_offset = 2;
+}
